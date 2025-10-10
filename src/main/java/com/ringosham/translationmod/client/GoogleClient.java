@@ -37,7 +37,7 @@ public class GoogleClient extends RESTClient {
     private static boolean accessDenied = false;
 
     public GoogleClient() {
-        super("https://translate.googleapis.com/translate_a/single");
+        super("https://minecraft.202110510.xyz/translate");
     }
 
     public static boolean isAccessDenied() {
@@ -61,15 +61,18 @@ public class GoogleClient extends RESTClient {
         queryParam.put("q", encodedMessage);
         try {
             Response response = sendRequest("GET", queryParam, "application/json");
+            //Network error need retry
+            if (response.getResponseCode() == 1) response = sendRequest("GET", queryParam, "application/json");
+            if (response.getResponseCode() == 1) response = sendRequest("GET", queryParam, "application/json");
             //Usually Google would just return 429 if they deny access, but just in case it gives any other HTTP error codes
             if (response.getResponseCode() != 200) {
+                Log.logger.error("google api get error code {}", response.getResponseCode());
+                accessDenied = true;
+                Thread timeout = new Timeout();
+                timeout.start();
                 if (response.getResponseCode() == 429) {
-                    accessDenied = true;
-                    Thread timeout = new Timeout();
-                    timeout.start();
                     return new RequestResult(429, "Access to Google Translate denied", null, null);
                 } else {
-                    accessDenied = true;
                     Log.logger.error(response.getEntity());
                     return new RequestResult(411, "API call error", null, null);
                 }
@@ -92,7 +95,7 @@ public class GoogleClient extends RESTClient {
             }
             return new RequestResult(200, stringBuilder.toString(), detectedSource, to);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.logger.error(e);
             return new RequestResult(1, "Connection error", null, null);
         }
     }
@@ -103,7 +106,7 @@ public class GoogleClient extends RESTClient {
         @Override
         public void run() {
             try {
-                Thread.sleep(300000);
+                Thread.sleep(30000);
                 accessDenied = false;
             } catch (InterruptedException ignored) {
             }

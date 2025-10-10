@@ -86,6 +86,7 @@ tasks.processResources {
     inputs.property("version", project.version)
     inputs.property("mcversion", mcVersion)
     inputs.property("modid", modid)
+    inputs.property("modName", modName)
 
     filesMatching(listOf("mcmod.info")) {
         expand(inputs.properties)

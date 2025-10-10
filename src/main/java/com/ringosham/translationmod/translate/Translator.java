@@ -28,6 +28,7 @@ import com.ringosham.translationmod.common.Log;
 import com.ringosham.translationmod.translate.types.TranslateResult;
 import net.minecraft.util.EnumChatFormatting;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +56,7 @@ public class Translator extends Thread {
         int begin = translationLog.size() - count;
         if (begin < 0)
             begin = 0;
-        return translationLog.subList(begin, translationLog.size());
+        return new ArrayList<>(translationLog.subList(begin, translationLog.size()));
     }
 
     //Parameter required for the raw content without any chat headers from the server

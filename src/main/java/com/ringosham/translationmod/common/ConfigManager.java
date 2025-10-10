@@ -111,9 +111,9 @@ public class ConfigManager {
         //I always hate how forge sets up their configurations.
         //Seriously, why would you need to retype everything just for accessing properties?
         //What happened to simple getters and setters?
-        targetLanguage = LangManager.getInstance().findLanguageFromName(config.getString("targetLanguage", Configuration.CATEGORY_GENERAL, "English", "Target language to translate for the chat"));
-        selfLanguage = LangManager.getInstance().findLanguageFromName(config.getString("selfLanguage", Configuration.CATEGORY_GENERAL, "English", "The language the user types"));
-        speakAsLanguage = LangManager.getInstance().findLanguageFromName(config.getString("speakAsLanguage", Configuration.CATEGORY_GENERAL, "Japanese", "The language the user wants their message to translate to"));
+        targetLanguage = LangManager.getInstance().findLanguageFromName(config.getString("targetLanguage", Configuration.CATEGORY_GENERAL, "Simplified Chinese", "Target language to translate for the chat"));
+        selfLanguage = LangManager.getInstance().findLanguageFromName(config.getString("selfLanguage", Configuration.CATEGORY_GENERAL, "Simplified Chinese", "The language the user types"));
+        speakAsLanguage = LangManager.getInstance().findLanguageFromName(config.getString("speakAsLanguage", Configuration.CATEGORY_GENERAL, "English", "The language the user wants their message to translate to"));
         bold = config.getBoolean("bold", Configuration.CATEGORY_GENERAL, false, "Bold the translated message");
         italic = config.getBoolean("italic", Configuration.CATEGORY_GENERAL, false, "Italic the translated message");
         underline = config.getBoolean("underline", Configuration.CATEGORY_GENERAL, false, "Underline the translated message");
@@ -131,15 +131,15 @@ public class ConfigManager {
         boolean valid = true;
         if (targetLanguage == null) {
             valid = false;
-            setTargetLanguage(LangManager.getInstance().findLanguageFromName("English"));
+            setTargetLanguage(LangManager.getInstance().findLanguageFromName("Simplified Chinese"));
         }
         if (selfLanguage == null) {
             valid = false;
-            setSelfLanguage(LangManager.getInstance().findLanguageFromName("English"));
+            setSelfLanguage(LangManager.getInstance().findLanguageFromName("Simplified Chinese"));
         }
         if (speakAsLanguage == null) {
             valid = false;
-            setSpeakAsLanguage(LangManager.getInstance().findLanguageFromName("Japanese"));
+            setSpeakAsLanguage(LangManager.getInstance().findLanguageFromName("English"));
         }
 
         //Regex validation
@@ -191,9 +191,9 @@ public class ConfigManager {
         int configVersion = prop.getInt();
         //In case there might be any major updates that would break under existing configs, this is here to reset everything.
         if (configMinVersion > configVersion) {
-            setTargetLanguage(LangManager.getInstance().findLanguageFromName("English"));
-            setSelfLanguage(LangManager.getInstance().findLanguageFromName("English"));
-            setSpeakAsLanguage(LangManager.getInstance().findLanguageFromName("Japanese"));
+            setTargetLanguage(LangManager.getInstance().findLanguageFromName("Simplified Chinese"));
+            setSelfLanguage(LangManager.getInstance().findLanguageFromName("Simplified Chinese"));
+            setSpeakAsLanguage(LangManager.getInstance().findLanguageFromName("English"));
             setBold(false);
             setItalic(false);
             setUnderline(false);
@@ -217,7 +217,7 @@ public class ConfigManager {
 
     public void setTargetLanguage(Language targetLanguage) {
         this.targetLanguage = targetLanguage;
-        config.get(Configuration.CATEGORY_GENERAL, "targetLanguage", "English", "Target language to translate for the chat").set(targetLanguage.getName());
+        config.get(Configuration.CATEGORY_GENERAL, "targetLanguage", "Simplified Chinese", "Target language to translate for the chat").set(targetLanguage.getName());
         config.save();
     }
 
@@ -232,7 +232,7 @@ public class ConfigManager {
 
     public void setSelfLanguage(Language selfLanguage) {
         this.selfLanguage = selfLanguage;
-        config.get(Configuration.CATEGORY_GENERAL, "selfLanguage", "English", "The language the user types").set(selfLanguage.getName());
+        config.get(Configuration.CATEGORY_GENERAL, "selfLanguage", "Simplified Chinese", "The language the user types").set(selfLanguage.getName());
         config.save();
     }
 
@@ -247,7 +247,7 @@ public class ConfigManager {
 
     public void setSpeakAsLanguage(Language speakAsLanguage) {
         this.speakAsLanguage = speakAsLanguage;
-        config.get(Configuration.CATEGORY_GENERAL, "speakAsLanguage", "Japanese", "The language the user wants their message to translate to").set(speakAsLanguage.getName());
+        config.get(Configuration.CATEGORY_GENERAL, "speakAsLanguage", "English", "The language the user wants their message to translate to").set(speakAsLanguage.getName());
         config.save();
     }
 

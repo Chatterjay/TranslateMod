@@ -19,6 +19,7 @@ package com.ringosham.translationmod.client;
 
 import com.ringosham.translationmod.client.types.Language;
 import com.ringosham.translationmod.client.types.RequestResult;
+import com.ringosham.translationmod.common.Log;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -90,7 +91,7 @@ public abstract class RESTClient {
         } catch (MalformedURLException ignored) {
             return null;
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.logger.error(e);
             return new Response(1, "Failed to connect to server");
         }
     }
