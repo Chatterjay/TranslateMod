@@ -23,9 +23,7 @@ For the paid option, follow these steps.
 
 ## Download
 
-Go to [Curseforge](https://www.curseforge.com/minecraft/mc-mods/real-time-chat-translation-mod)
-
-[Minecraft forum link](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2599597-1-7-10-1-12-2-real-time-translation-mod-break-the)
+Go to [Releases](https://github.com/Guation/TranslateMod/releases)
 
 ## Bug reporting
 
