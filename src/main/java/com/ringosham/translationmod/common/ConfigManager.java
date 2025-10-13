@@ -40,7 +40,7 @@ public class ConfigManager {
             "\\(From (\\w+)\\):( )?", //PM
             "(\\w+) whispers ", //PM
             "(\\[\\S+\\]( )?){0,2}(\\w+)( )?\u00BB( )?", //The Hive, etc.
-            "(\\[\\S+\\]( )?){0,2}(\\w+)( )?:( )?(Eye\\[\\d\\] )?", //Shotbow, MineZ, etc.
+            "(\\[\\S+\\]( )?){0,3}(\\w+)( )?:( )?(Eye\\[\\d\\] )?", //Shotbow, MineZ, Hypixel, etc.
             //Screw you Mineplex for the most complicated chat system
             "\\d{1,3} (\\w+ )?(\\w+) ", //Mineplex survival games
             "Dead (\\d+ )?(\\w+ )?(\\w+) ", //Other Mineplex games
@@ -55,6 +55,9 @@ public class ConfigManager {
             "(\\w+) tells you: ", //Frostcraft PM
             "\\[(\\w+) -> \\w+\\] ", //Default Bukkit PM? Essential?
             "(\\w+ )?(\\w+-)?(\\w+)(\\*)?(\\+){0,2}:", //Mineyourmind(Specifically the forum members). Thanks for the shout out!
+            "From (\\[\\S+\\]( )?){0,3}(\\w+)( )?:( )?", // Hypixel
+            "Party > (\\[\\S+\\]( )?){0,3}(\\w+)( )?:( )?", // Hypixel
+            "Guild > (\\[\\S+\\]( )?){0,3}(\\w+)( )?(\\[\\S+\\])?( )?:( )?", // Hypixel
     };
     public static final int[] defaultGroups = {
             1,
@@ -74,7 +77,10 @@ public class ConfigManager {
             2,
             1,
             1,
-            3
+            3,
+            3,
+            3,
+            3,
     };
     private static final String[] engines = {"google", "baidu"};
     //In case there are future updates that drastically change how the mod works. This variable would be here to check if the configs are out of date.

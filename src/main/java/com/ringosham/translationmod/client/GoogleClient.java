@@ -37,7 +37,7 @@ public class GoogleClient extends RESTClient {
     private static boolean accessDenied = false;
 
     public GoogleClient() {
-        super("https://minecraft.202110510.xyz/translate");
+        super("https://translate.guation.cn/translate");
     }
 
     public static boolean isAccessDenied() {

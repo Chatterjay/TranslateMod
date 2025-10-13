@@ -244,7 +244,9 @@ public class Translator extends Thread {
         Matcher matcher = pattern.matcher(messageTrim);
         matcher.find();
         //Remove the chat header to get the actual content
-        String rawMessage = messageTrim.replace(matcher.group(0), "");
+        String rawMessage = messageTrim.replace(matcher.group(0), "").trim();
+        if (rawMessage.isEmpty()) return;
+        if (rawMessage.equals("gg")) return;
         TranslateResult translatedMessage = translate(rawMessage);
         if (translatedMessage == null)
             return;
@@ -259,7 +261,7 @@ public class Translator extends Thread {
                 "Translation: " +
                 (fromStr == null ? "Unknown" : fromStr) + " -> " + to.getName();
         //In cases where the message language and the target language is the same
-        if (translatedMessage.getMessage().trim().equals(rawMessage.trim()))
+        if (translatedMessage.getMessage().trim().equals(rawMessage))
             return;
         ChatUtil.printChatMessageAdvanced(chatMessage, hoverText, ConfigManager.INSTANCE.isBold(), ConfigManager.INSTANCE.isItalic(), ConfigManager.INSTANCE.isUnderline(), EnumChatFormatting.getValueByName(ConfigManager.INSTANCE.getColor()));
     }
