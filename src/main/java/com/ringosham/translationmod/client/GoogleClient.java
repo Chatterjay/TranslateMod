@@ -62,8 +62,10 @@ public class GoogleClient extends RESTClient {
         try {
             Response response = sendRequest("GET", queryParam, "application/json");
             //Network error need retry
-            if (response.getResponseCode() == 1) response = sendRequest("GET", queryParam, "application/json");
-            if (response.getResponseCode() == 1) response = sendRequest("GET", queryParam, "application/json");
+            if (response.getResponseCode() == 1 || response.getResponseCode() >= 500)
+                response = sendRequest("GET", queryParam, "application/json");
+            if (response.getResponseCode() == 1 || response.getResponseCode() >= 500)
+                response = sendRequest("GET", queryParam, "application/json");
             //Usually Google would just return 429 if they deny access, but just in case it gives any other HTTP error codes
             if (response.getResponseCode() != 200) {
                 Log.logger.error("google api get error code {}", response.getResponseCode());

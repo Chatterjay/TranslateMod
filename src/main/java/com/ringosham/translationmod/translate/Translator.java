@@ -27,6 +27,7 @@ import com.ringosham.translationmod.common.ConfigManager;
 import com.ringosham.translationmod.common.Log;
 import com.ringosham.translationmod.translate.types.TranslateResult;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -39,16 +40,22 @@ public class Translator extends Thread {
     private final String message;
     private final Language from;
     private final Language to;
+    private final IChatComponent rawMessage;
     private static final LinkedList<TranslationLog> translationLog = new LinkedList<>();
     //Cache about 100 messages
     private static final int CACHE_SIZE = 100;
 
     private static boolean warnLimit = false;
 
-    public Translator(String message, Language from, Language to) {
+    public Translator(String message, Language from, Language to, IChatComponent rawMessage) {
         this.message = message;
         this.from = from;
         this.to = to;
+        this.rawMessage = rawMessage;
+    }
+
+    public Translator(String message, Language from, Language to) {
+        this(message, from, to, null);
     }
 
     //Limits how many messages to get from the full log
@@ -263,7 +270,11 @@ public class Translator extends Thread {
         //In cases where the message language and the target language is the same
         if (translatedMessage.getMessage().trim().equals(rawMessage))
             return;
-        ChatUtil.printChatMessageAdvanced(chatMessage, hoverText, ConfigManager.INSTANCE.isBold(), ConfigManager.INSTANCE.isItalic(), ConfigManager.INSTANCE.isUnderline(), EnumChatFormatting.getValueByName(ConfigManager.INSTANCE.getColor()));
+        if (this.rawMessage == null){
+            ChatUtil.printChatMessageAdvanced(chatMessage, hoverText, ConfigManager.INSTANCE.isBold(), ConfigManager.INSTANCE.isItalic(), ConfigManager.INSTANCE.isUnderline(), EnumChatFormatting.getValueByName(ConfigManager.INSTANCE.getColor()));
+        } else {
+            ChatUtil.appendChatMessageAdvanced(chatMessage, hoverText, ConfigManager.INSTANCE.isBold(), ConfigManager.INSTANCE.isItalic(), ConfigManager.INSTANCE.isUnderline(), EnumChatFormatting.getValueByName(ConfigManager.INSTANCE.getColor()), this.rawMessage);
+        }
     }
 
     private void addToLog(TranslationLog log) {

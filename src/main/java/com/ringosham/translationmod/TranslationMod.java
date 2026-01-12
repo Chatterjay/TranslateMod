@@ -37,6 +37,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = "translationmod", name = "%mod_name%", version = "%mod_version%")
 public class TranslationMod {
     private Handler handler = new Handler();
+    public static boolean refreshChat = false;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e) {

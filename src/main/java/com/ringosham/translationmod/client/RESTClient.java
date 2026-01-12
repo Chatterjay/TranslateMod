@@ -69,7 +69,8 @@ public abstract class RESTClient {
             connection.setRequestProperty("Content-Type", contentType);
             connection.setRequestMethod(method);
             connection.setDoOutput(true);
-            connection.setConnectTimeout(5000);
+            connection.setConnectTimeout(2000);
+            connection.setReadTimeout(30000);
             connection.connect();
             if (connection.getResponseCode() == 200) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));

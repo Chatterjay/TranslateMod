@@ -17,6 +17,7 @@
 
 package com.ringosham.translationmod.events;
 
+import com.ringosham.translationmod.TranslationMod;
 import com.ringosham.translationmod.common.ChatUtil;
 import com.ringosham.translationmod.common.ConfigManager;
 import com.ringosham.translationmod.common.Log;
@@ -46,6 +47,7 @@ public class Handler {
     private SignText lastSign;
     private boolean hintShown = false;
     private int ticks = 0;
+    private int refreshChatTicks = 0;
 
     @SubscribeEvent
     public void onGuiOpen(GuiOpenEvent event) {
@@ -58,7 +60,7 @@ public class Handler {
     public void chatReceived(ClientChatReceivedEvent event) {
         IChatComponent eventMessage = event.message;
         String message = eventMessage.getUnformattedText().replaceAll("§(.)", "");
-        Thread translate = new Translator(message, null, ConfigManager.INSTANCE.getTargetLanguage());
+        Thread translate = new Translator(message, null, ConfigManager.INSTANCE.getTargetLanguage(), eventMessage);
         translate.start();
     }
 
@@ -72,6 +74,15 @@ public class Handler {
             if (ConfigManager.INSTANCE.getRegexList().size() == 0) {
                 Log.logger.warn("No chat regex in the configurations");
                 ChatUtil.printChatMessage(true, "The mod needs chat regex to function. Check the mod options to add one", EnumChatFormatting.RED);
+            }
+        }
+        if (TranslationMod.refreshChat) {
+            this.refreshChatTicks ++;
+            if (this.refreshChatTicks >= 3) {
+                this.refreshChatTicks = 0;
+                TranslationMod.refreshChat = false;
+                if (Minecraft.getMinecraft().ingameGUI != null)
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().refreshChat();
             }
         }
     }
