@@ -62,7 +62,7 @@ public class ChatUtil {
         component.appendSibling(new ChatComponentText("\n"));
         component.appendSibling(chatComponent);
         Log.logger.info("[CHAT] {}", chatComponent.getUnformattedTextForChat());
-        TranslationMod.refreshChat = true;
+        TranslationMod.refreshChat += 1;
     }
 
     public static void printCredits() {

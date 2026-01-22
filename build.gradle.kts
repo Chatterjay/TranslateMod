@@ -15,6 +15,7 @@ val mcVersion: String by project
 val version: String by project
 val modid: String by project
 val modName: String by project
+val transformerFile = file("src/main/resources/accesstransformer.cfg")
 
 // Toolchains:
 java {
@@ -39,6 +40,10 @@ loom {
     }
     forge {
         pack200Provider.set(dev.architectury.pack200.java.Pack200Adapter())
+        if (transformerFile.exists()) {
+            println("Installing access transformer")
+            accessTransformer(transformerFile)
+        }
     }
 }
 
@@ -91,6 +96,8 @@ tasks.processResources {
     filesMatching(listOf("mcmod.info")) {
         expand(inputs.properties)
     }
+
+    rename("accesstransformer.cfg", "META-INF/${modid}_at.cfg")
 }
 
 val replacements = mapOf(

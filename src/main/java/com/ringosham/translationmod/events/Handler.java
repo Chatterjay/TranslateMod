@@ -71,18 +71,25 @@ public class Handler {
         if (!hintShown) {
             hintShown = true;
             ChatUtil.printChatMessage(true, "Press [" + EnumChatFormatting.AQUA + Keyboard.getKeyName(KeyBind.translateKey.getKeyCode()) + EnumChatFormatting.WHITE + "] for translation settings", EnumChatFormatting.WHITE);
-            if (ConfigManager.INSTANCE.getRegexList().size() == 0) {
+            if (ConfigManager.INSTANCE.getRegexList().isEmpty()) {
                 Log.logger.warn("No chat regex in the configurations");
                 ChatUtil.printChatMessage(true, "The mod needs chat regex to function. Check the mod options to add one", EnumChatFormatting.RED);
             }
         }
-        if (TranslationMod.refreshChat) {
+        if (TranslationMod.refreshChat > 0) {
             this.refreshChatTicks ++;
             if (this.refreshChatTicks >= 3) {
                 this.refreshChatTicks = 0;
-                TranslationMod.refreshChat = false;
-                if (Minecraft.getMinecraft().ingameGUI != null)
+                if (Minecraft.getMinecraft().ingameGUI != null) {
+                    int scrollPos = Minecraft.getMinecraft().ingameGUI.getChatGUI().scrollPos;
+                    boolean isScrolled = Minecraft.getMinecraft().ingameGUI.getChatGUI().isScrolled;
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().refreshChat();
+                    if (scrollPos > 0) {
+                        Minecraft.getMinecraft().ingameGUI.getChatGUI().scroll(scrollPos + TranslationMod.refreshChat);
+                    }
+                    Minecraft.getMinecraft().ingameGUI.getChatGUI().isScrolled = isScrolled;
+                }
+                TranslationMod.refreshChat = 0;
             }
         }
     }
