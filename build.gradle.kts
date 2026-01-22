@@ -84,6 +84,8 @@ tasks.withType(org.gradle.jvm.tasks.Jar::class) {
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
+        if (transformerFile.exists())
+            this["FMLAT"] = "${modid}_at.cfg"
     }
 }
 
