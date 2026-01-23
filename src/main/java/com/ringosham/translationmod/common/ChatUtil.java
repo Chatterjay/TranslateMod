@@ -21,12 +21,12 @@ import com.ringosham.translationmod.TranslationMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.GuiNewChat;
+import net.minecraft.client.gui.GuiUtilRenderComponents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.HoverEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.*;
+
+import java.util.List;
 
 public class ChatUtil {
     private static final String prefix = EnumChatFormatting.GREEN + "[" + EnumChatFormatting.RESET + "RTTM" + EnumChatFormatting.GREEN + "] " + EnumChatFormatting.RESET;
@@ -62,7 +62,10 @@ public class ChatUtil {
         component.appendSibling(new ChatComponentText("\n"));
         component.appendSibling(chatComponent);
         Log.logger.info("[CHAT] {}", chatComponent.getUnformattedTextForChat());
-        TranslationMod.refreshChat += 1;
+        GuiNewChat chat = Minecraft.getMinecraft().ingameGUI.getChatGUI();
+        int i = MathHelper.floor_float((float)chat.getChatWidth() / chat.getChatScale());
+        List<IChatComponent> list = GuiUtilRenderComponents.splitText(chatComponent, i, Minecraft.getMinecraft().fontRendererObj, false, false);
+        TranslationMod.refreshChat += list.size();
     }
 
     public static void printCredits() {

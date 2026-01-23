@@ -27,6 +27,7 @@ import com.ringosham.translationmod.translate.Translator;
 import com.ringosham.translationmod.translate.types.SignText;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiNewChat;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumChatFormatting;
@@ -42,12 +43,17 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
 
+import java.lang.reflect.Field;
+
 public class Handler {
     private static Thread readSign;
     private SignText lastSign;
     private boolean hintShown = false;
     private int ticks = 0;
     private int refreshChatTicks = 0;
+    private String chatGUIClassName = "";
+    private Field scrollPos = null;
+    private Field isScrolled = null;
 
     @SubscribeEvent
     public void onGuiOpen(GuiOpenEvent event) {
@@ -81,13 +87,43 @@ public class Handler {
             if (this.refreshChatTicks >= 3) {
                 this.refreshChatTicks = 0;
                 if (Minecraft.getMinecraft().ingameGUI != null) {
-                    int scrollPos = Minecraft.getMinecraft().ingameGUI.getChatGUI().scrollPos;
-                    boolean isScrolled = Minecraft.getMinecraft().ingameGUI.getChatGUI().isScrolled;
-                    Minecraft.getMinecraft().ingameGUI.getChatGUI().refreshChat();
-                    if (scrollPos > 0) {
-                        Minecraft.getMinecraft().ingameGUI.getChatGUI().scroll(scrollPos + TranslationMod.refreshChat);
+                    GuiNewChat chat = Minecraft.getMinecraft().ingameGUI.getChatGUI();
+                    if (!this.chatGUIClassName.equals(chat.getClass().getName())) {
+                        this.chatGUIClassName = chat.getClass().getName();
+                        try {
+                            this.scrollPos = chat.getClass().getDeclaredField("scrollPos");
+                            this.scrollPos.setAccessible(true);
+                        } catch (NoSuchFieldException ignore) {
+                            try {
+                                this.scrollPos = chat.getClass().getDeclaredField("field_146250_j");
+                                this.scrollPos.setAccessible(true);
+                            } catch (NoSuchFieldException ignore1) {
+                                this.scrollPos = null;
+                            }
+                        }
+                        try {
+                            this.isScrolled = chat.getClass().getDeclaredField("isScrolled");
+                            this.isScrolled.setAccessible(true);
+                        } catch (NoSuchFieldException ignore) {
+                            try {
+                                this.isScrolled = chat.getClass().getDeclaredField("field_146251_k");
+                                this.isScrolled.setAccessible(true);
+                            } catch (NoSuchFieldException ignore1) {
+                                this.isScrolled = null;
+                            }
+                        }
                     }
-                    Minecraft.getMinecraft().ingameGUI.getChatGUI().isScrolled = isScrolled;
+                    try {
+                        int scrollPos = (int) this.scrollPos.get(chat);
+                        boolean isScrolled = (boolean) this.isScrolled.get(chat);
+                        chat.refreshChat();
+                        if (scrollPos > 0) {
+                            chat.scroll(scrollPos + TranslationMod.refreshChat);
+                        }
+                        this.isScrolled.set(chat, isScrolled);
+                    } catch (NullPointerException | IllegalAccessException ignore) {
+
+                    }
                 }
                 TranslationMod.refreshChat = 0;
             }
