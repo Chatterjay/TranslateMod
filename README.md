@@ -1,4 +1,6 @@
-# Real time translation mod
+forked from [ringosham/TranslateMod](https://github.com/ringosham/TranslateMod)
+
+# Real time translation mod 1.8.9
 
 A Minecraft Forge mod that translates the chat to the language you desire.
 
@@ -11,6 +13,8 @@ Translation services are provided by Google.
 This uses both the Google translator API (Free, kind of) and the Cloud translation API (Paid).
 
 You do not need to configure anything to use the free option.
+
+The free translation mirror service is provided by [Tencent Cloud EdgeOne](https://edgeone.ai/).
 
 For the paid option, follow these steps.
 1. Create a new project in [Google Cloud Platform](https://console.cloud.google.com)
