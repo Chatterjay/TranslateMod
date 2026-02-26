@@ -1,11 +1,11 @@
 [
   {
-    "modid": "${modid}",
-    "name": "${modName}",
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
     "description": "This mod translate your Minecraft chat in real time! Translation results are powered by Google. DISCLAIMER: This is using a web translation service. Translation error is to be expected.",
     "url": "https://github.com/Guation/TranslateMod",
     "version": "${version}",
-    "mcversion": "${mcversion}",
+    "mcversion": "${mc_version}",
     "updateurl": "",
     "authorList": [
       "Ringosham",

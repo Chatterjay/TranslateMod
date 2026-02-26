@@ -27,6 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.LanguageRegistry;
 
 /**
  * Real time translation project - Licensed under GPL v3
@@ -54,6 +55,9 @@ public class TranslationMod {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         KeyBind.keyInit();
+        LanguageRegistry.instance().loadLocalization("/assets/translationmod/lang/zh_cn.lang", "zh_CN", false);
+        LanguageRegistry.instance().loadLocalization("/assets/translationmod/lang/en_us.lang", "en_US", false);
+
     }
 
     @Mod.EventHandler

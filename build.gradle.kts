@@ -10,11 +10,11 @@ plugins {
 
 //Constants:
 
-val modVersion: String = project.property("version") as String
-val modId: String = project.property("modid") as String
-val mcVersion: String = project.property("mcVersion") as String
-val modName: String = project.property("modName") as String
-val baseGroup: String = project.property("baseGroup") as String
+val baseGroup: String by project
+val mcVersion: String by project
+val version: String by project
+val modid: String by project
+val modName: String by project
 val transformerFile = file("src/main/resources/accesstransformer.cfg")
 // Toolchains:
 java {
@@ -79,34 +79,39 @@ tasks.withType(JavaCompile::class) {
 }
 
 tasks.withType(org.gradle.jvm.tasks.Jar::class) {
-    archiveBaseName.set(modId)
+    archiveBaseName.set(modid)
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
         if (transformerFile.exists())
-            this["FMLAT"] = "${modId}_at.cfg"
+            this["FMLAT"] = "${modid}_at.cfg"
     }
 }
-version = modVersion
-group = baseGroup
+
 tasks.processResources {
-    inputs.property("mod_version", modVersion)
-    inputs.property("mod_id", modId)
+//    inputs.property("version", project.version)
+    inputs.property("version", project.version)
+    inputs.property("mc_version", mcVersion)
+    inputs.property("mod_id", modid)
+    inputs.property("mod_name",modName)
 
-    val expandProperties = mapOf(
-        "mod_version" to modVersion,
-        "mod_id" to modId
-    )
-
+    filesMatching(listOf("mcmod.info")) {
+        expand(inputs.properties)
+        filteringCharset = "UTF-8"
+    }
     filesMatching("**/*.lang") {
-        expand(expandProperties)
+        expand(mapOf(
+            "mod_version" to project.version,
+            "mod_id" to modid,
+            "mod_name" to modName
+        ))
         filteringCharset = "UTF-8"
     }
 
-    rename("accesstransformer.cfg", "META-INF/${modId}_at.cfg")
+    rename("accesstransformer.cfg", "META-INF/${modid}_at.cfg")
 }
 val replacements = mapOf(
-    "%mod_id%" to modId,
+    "%mod_id%" to modid,
     "%mod_name%" to modName,
     "%mod_version%" to version,
     "%minecraft_version%" to mcVersion
