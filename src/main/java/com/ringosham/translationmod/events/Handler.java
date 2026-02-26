@@ -42,9 +42,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.lwjgl.input.Keyboard;
-
+import net.minecraft.util.StatCollector;
 import java.lang.reflect.Field;
-
+import net.minecraft.client.resources.I18n;
 public class Handler {
     private static Thread readSign;
     private SignText lastSign;
@@ -76,10 +76,16 @@ public class Handler {
             return;
         if (!hintShown) {
             hintShown = true;
-            ChatUtil.printChatMessage(true, "Press [" + EnumChatFormatting.AQUA + Keyboard.getKeyName(KeyBind.translateKey.getKeyCode()) + EnumChatFormatting.WHITE + "] for translation settings", EnumChatFormatting.WHITE);
+            String keyName = Keyboard.getKeyName(KeyBind.translateKey.getKeyCode());
+            String translationHint = I18n.format(
+                    "translationmod.hint.translation_settings",
+                    EnumChatFormatting.AQUA + keyName + EnumChatFormatting.WHITE
+            );
+            ChatUtil.printChatMessage(true, translationHint, EnumChatFormatting.WHITE);
             if (ConfigManager.INSTANCE.getRegexList().isEmpty()) {
-                Log.logger.warn("No chat regex in the configurations");
-                ChatUtil.printChatMessage(true, "The mod needs chat regex to function. Check the mod options to add one", EnumChatFormatting.RED);
+                Log.logger.warn(I18n.format("translationmod.log.regex.missing"));
+                String warningText = I18n.format("translationmod.chat.regex.missing");
+                ChatUtil.printChatMessage(true, warningText, EnumChatFormatting.RED);
             }
         }
         if (TranslationMod.refreshChat > 0) {

@@ -22,9 +22,9 @@ import com.ringosham.translationmod.translate.SelfTranslate;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
-
+import net.minecraft.client.resources.I18n;
 import java.io.IOException;
-
+import net.minecraft.client.resources.I18n;
 public class TranslateGui extends CommonGui {
     private static final int guiHeight = 125;
     private static final int guiWidth = 225;
@@ -38,9 +38,16 @@ public class TranslateGui extends CommonGui {
     @Override
     public void drawScreen(int x, int y, float tick) {
         super.drawScreen(x, y, tick);
-        fontRendererObj.drawString("%mod_name% - by Ringosham", getLeftMargin(), getTopMargin(), 0x555555);
-        fontRendererObj.drawString("Enter the command/prefix here (Optional)", getLeftMargin(), getTopMargin() + 10, 0x555555);
-        fontRendererObj.drawString("Enter your message here (Enter to send)", getLeftMargin(), getTopMargin() + 40, 0x555555);
+        String modNameText = I18n.format("translationmod.gui.mod_name", "Ringosham");
+        fontRendererObj.drawString(modNameText, getLeftMargin(), getTopMargin(), 0x555555);
+
+        // 2. 命令/前缀输入提示
+        String headerHintText = I18n.format("translationmod.gui.header_hint");
+        fontRendererObj.drawString(headerHintText, getLeftMargin(), getTopMargin() + 10, 0x555555);
+
+        // 3. 消息输入提示
+        String messageHintText = I18n.format("translationmod.gui.message_hint");
+        fontRendererObj.drawString(messageHintText, getLeftMargin(), getTopMargin() + 40, 0x555555);
         headerField.drawTextBox();
         messageField.drawTextBox();
         if (this.headerField.isFocused())
@@ -61,10 +68,15 @@ public class TranslateGui extends CommonGui {
         messageField.setEnableBackgroundDrawing(true);
         messageField.setFocused(true);
         Keyboard.enableRepeatEvents(true);
-        this.buttonList.add(new GuiButton(0, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 10 - regularButtonHeight * 2, regularButtonWidth, regularButtonHeight, "Settings"));
-        this.buttonList.add(new GuiButton(1, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, "Close"));
-        this.buttonList.add(new GuiButton(2, getLeftMargin(), getYOrigin() + guiHeight - 10 - regularButtonHeight * 2, regularButtonWidth, regularButtonHeight, "Credits"));
-        this.buttonList.add(new GuiButton(3, getLeftMargin(), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, "Retranslate"));
+
+        String btnSettings = I18n.format("translationmod.gui.button.settings");
+        String btnClose = I18n.format("translationmod.gui.button.close");
+        String btnCredits = I18n.format("translationmod.gui.button.credits");
+        String btnRetranslate = I18n.format("translationmod.gui.button.retranslate");
+        this.buttonList.add(new GuiButton(0, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 10 - regularButtonHeight * 2, regularButtonWidth, regularButtonHeight, btnSettings));
+        this.buttonList.add(new GuiButton(1, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, btnClose));
+        this.buttonList.add(new GuiButton(2, getLeftMargin(), getYOrigin() + guiHeight - 10 - regularButtonHeight * 2, regularButtonWidth, regularButtonHeight, btnCredits));
+        this.buttonList.add(new GuiButton(3, getLeftMargin(), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, btnRetranslate));
     }
 
     @Override

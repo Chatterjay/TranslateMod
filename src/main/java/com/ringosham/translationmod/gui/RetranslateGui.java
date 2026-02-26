@@ -6,13 +6,15 @@ import net.minecraft.client.gui.GuiButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.resources.I18n;
 public class RetranslateGui extends CommonGui {
     private static final String title;
     private static final int guiHeight;
     private static final int guiWidth;
 
     static {
-        title = "%mod_name% - Retranslate";
+        // 标题改为从lang文件读取（初始化时先占位，实际使用时动态获取）
+        title = I18n.format("translationmod.gui.retranslate.title");
         guiHeight = 200;
         guiWidth = 350;
     }
@@ -28,16 +30,20 @@ public class RetranslateGui extends CommonGui {
     @Override
     public void drawScreen(int x, int y, float tick) {
         super.drawScreen(x, y, tick);
-        drawStringLine(title, new String[]{
-                "Translations are in the incorrect language?",
-                "Select the messages below to retranslate.",
+        String retranslateTitle = I18n.format("translationmod.gui.retranslate.title");
+        String hintLine1 = I18n.format("translationmod.gui.retranslate.hint.line1");
+        String hintLine2 = I18n.format("translationmod.gui.retranslate.hint.line2");
+        drawStringLine(retranslateTitle, new String[]{
+                hintLine1,
+                hintLine2,
         }, 0);
         for (int i = 0; i < buttonList.size(); i++) {
             TextButton button = (TextButton) buttonList.get(i);
             if (button.isMouseOver()) {
                 List<String> hoverText = new ArrayList<>();
-                hoverText.add("Sender: " + logs.get(i).getSender());
-                hoverText.add("Message: " + logs.get(i).getMessage());
+                // 悬浮提示文本从lang读取，使用%s占位符填充动态内容
+                hoverText.add(I18n.format("translationmod.gui.retranslate.hover.sender", logs.get(i).getSender()));
+                hoverText.add(I18n.format("translationmod.gui.retranslate.hover.message", logs.get(i).getMessage()));
                 //func_243308_b(MatrixStack, List<ITextComponent>, int, int) -> renderTooltip(...)
                 drawHoveringText(hoverText, x, y);
             }

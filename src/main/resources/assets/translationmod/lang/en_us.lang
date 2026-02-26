@@ -1,0 +1,175 @@
+translationmod.gui.button.settings=Settings
+translationmod.gui.button.close=Close
+translationmod.gui.button.credits=Credits
+translationmod.gui.button.retranslate=Retranslate
+
+translationmod.hint.translation_settings=Press [%s] for translation settings
+translationmod.log.regex.missing=No chat regex in the configurations
+translationmod.credits.title=Real-time translation mod Version ${mod_version} by Ringosham.
+
+translationmod.gui.mod_name=${mod_id} - by %s
+translationmod.gui.header_hint=Enter the command/prefix here (Optional)
+translationmod.gui.message_hint=Enter your message here (Enter to send)
+
+translationmod.credits.service=Online translation services powered by Google
+translationmod.credits.disclaimer=Translation results may not be 100% accurate
+translationmod.chat.regex.missing=The mod needs chat regex to function. Check the mod options to add one
+
+translationmod.gui.retranslate.title=${mod_id} - Retranslate
+translationmod.gui.retranslate.hint.line1=Translations are in the incorrect language?
+translationmod.gui.retranslate.hint.line2=Select the messages below to retranslate.
+
+translationmod.gui.retranslate.hover.sender=Sender: %s
+translationmod.gui.retranslate.hover.message=Message: %s
+
+translationmod.gui.settings.button.save_close=Save and close
+translationmod.gui.settings.button.reset_default=Reset to default
+translationmod.gui.settings.button.translate_sign=Translate signs
+translationmod.gui.settings.button.engine_options=Engine options
+translationmod.gui.settings.button.message_color=Message color
+translationmod.gui.settings.button.view_add=View / Add
+
+translationmod.gui.settings.title=${mod_id} - Settings
+
+translationmod.gui.settings.label.regex_list=Regex list:
+translationmod.gui.settings.label.target_language=Target language:
+translationmod.gui.settings.label.self_language=Self language:
+translationmod.gui.settings.label.speak_as_language=Speak as language:
+translationmod.gui.settings.label.preview=Preview:
+
+translationmod.gui.settings.preview.text=你好 Hello Notch
+
+translationmod.gui.settings.tooltip.target_language=The language your chat will be translated to
+
+translationmod.gui.settings.tooltip.self_language.line1=The language you speak in game
+translationmod.gui.settings.tooltip.self_language.line2=This will be utilised when you want to translate what you speak
+
+translationmod.gui.settings.tooltip.speak_as_language.line1=The language your messages will be translated to.
+translationmod.gui.settings.tooltip.speak_as_language.line2=After you typed your messages through this mod,
+translationmod.gui.settings.tooltip.speak_as_language.line3=it will be translated to the language you specified
+
+translationmod.gui.settings.tooltip.regex_list.line1=Regex are patterns for the mod to detect chat messages.
+translationmod.gui.settings.tooltip.regex_list.line2=If you notice the mod doesn't do anything on a server,
+translationmod.gui.settings.tooltip.regex_list.line3=chances are you need to add one here.
+
+translationmod.gui.settings.tooltip.api_key=Change your translation engine options and enter your API key
+translationmod.gui.settings.tooltip.color=Changes the color of the translated message
+translationmod.gui.settings.tooltip.bold=Bolds the translated message
+translationmod.gui.settings.tooltip.italic=Italics the translated message
+translationmod.gui.settings.tooltip.underline=Underlines the translated message
+translationmod.gui.settings.tooltip.sign=Translates signs when you look at them
+translationmod.config.lang.english=English
+translationmod.config.lang.japanese=Japanese
+
+translationmod.chat.hint.settings_applied=Settings applied.
+
+translationmod.engine_gui.text.choose_engine=Please choose your translation engine
+translationmod.engine_gui.text.only_one_engine=The mod can only use either of them
+
+translationmod.engine_gui.text.google_api_key=Cloud platform API key
+translationmod.engine_gui.text.google_free_hint=Delete/Leave empty to use the free API
+translationmod.engine_gui.text.baidu_app_id=Baidu developer App ID
+translationmod.engine_gui.text.baidu_api_key=Baidu API key
+
+translationmod.engine_gui.button.google=Google
+translationmod.engine_gui.button.baidu=Baidu
+translationmod.engine_gui.button.apply_close=Apply and close
+translationmod.engine_gui.button.back=Back
+
+translationmod.engine_gui.tooltip.google.line1=By default, you are using the "free" version of Google translation
+translationmod.engine_gui.tooltip.google.line2=This is the same API the Google translate website is using
+translationmod.engine_gui.tooltip.google.line3=However, too many requests and Google will block you for a few minutes
+translationmod.engine_gui.tooltip.google.line4=Cloud translation API is the paid version of Google translate
+translationmod.engine_gui.tooltip.google.line5=Please check the mod page for details
+
+translationmod.engine_gui.tooltip.baidu.line1=If you cannot use Google due to country restrictions,
+translationmod.engine_gui.tooltip.baidu.line2=Baidu is your second option
+translationmod.engine_gui.tooltip.baidu.line3=An account is needed to use this API (Phone verification required)
+translationmod.engine_gui.tooltip.baidu.line4=Free tier only allows 1 request per second
+translationmod.engine_gui.tooltip.baidu.line5=Paying allows for more requests per second
+translationmod.engine_gui.tooltip.baidu.line6=Please check the mod page for details
+
+translationmod.engine_gui.chat.applied=New translation engine options have been applied.
+
+translationmod.regex_gui.title=${mod_id} - Regex list
+translationmod.regex_gui.desc1=Regex(Regular expression) are search patterns used to detect messages.
+translationmod.regex_gui.desc2=You can use this website to test your regex.
+translationmod.regex_gui.cheatsheet.title=Cheatsheet: (Hover your mouse to see explanation)
+translationmod.regex_gui.tip=TIP: Combine classes and quantifiers together to match several characters
+translationmod.regex_gui.pagination.of= of
+translationmod.regex_gui.test_message=Notch --> English: Hello!
+
+translationmod.regex_gui.button.add=+
+translationmod.regex_gui.button.next=>
+translationmod.regex_gui.button.save_close=Save and close
+translationmod.regex_gui.button.prev=<
+translationmod.regex_gui.button.reset_default=Reset to default
+
+translationmod.regex_gui.validate.valid=Regex valid! The regex should stop at before the message content
+translationmod.regex_gui.validate.invalid=Regex invalid! Please check your syntax
+translationmod.regex_gui.validate.conflict=Regex conflict with the mod messages! Please be more specific
+translationmod.regex_gui.validate.no_group=Regex valid, but it needs at least 1 group to detect player names
+translationmod.regex_gui.validate.possible_match=Possible match:
+translationmod.regex_gui.validate.group_number=Group number:
+translationmod.regex_gui.validate.matching_username=Matching username:
+
+translationmod.regex_gui.match.no_match=No match from chat log :(
+translationmod.regex_gui.match.no_username=Can't find player username :(
+
+translationmod.regex_gui.error.cannot_open_link=Cannot open link
+
+translationmod.regex_gui.chat.regex_applied=Regex list applied
+
+translationmod.regex_gui.cheatsheet.dot=. - Matches any character
+translationmod.regex_gui.cheatsheet.dot.desc1=Matches any character
+translationmod.regex_gui.cheatsheet.dot.desc2=The only exception is the newline character (\\n)
+translationmod.regex_gui.cheatsheet.dot.desc3=Newlines are not used in chat so it doesn't matter
+
+translationmod.regex_gui.cheatsheet.word=\\w - Matches word
+translationmod.regex_gui.cheatsheet.word.desc1=Matches all alphabets (Both capital and small), numbers and underscore
+translationmod.regex_gui.cheatsheet.word.desc2=Minecraft usernames are based on words. They are perfect to detect player names
+
+translationmod.regex_gui.cheatsheet.digit=\\d - Digit
+translationmod.regex_gui.cheatsheet.digit.desc1=Matches all numbers
+
+translationmod.regex_gui.cheatsheet.range=[a-g] - Match character in range
+translationmod.regex_gui.cheatsheet.range.desc1=Matches any characters in this specific range
+translationmod.regex_gui.cheatsheet.range.desc2=Example: [a-g]
+
+translationmod.regex_gui.cheatsheet.star=* - Matches 0 or more
+translationmod.regex_gui.cheatsheet.star.desc1=Matches 0 or more of its character class
+translationmod.regex_gui.cheatsheet.star.desc2=Example: N\\w*
+
+translationmod.regex_gui.cheatsheet.plus=+ - Matches 1 or more
+translationmod.regex_gui.cheatsheet.plus.desc1=Matches 1 or more of a character/group
+translationmod.regex_gui.cheatsheet.plus.desc2=Example: N\\w+
+
+translationmod.regex_gui.cheatsheet.optional=? - Optional
+translationmod.regex_gui.cheatsheet.optional.desc1=Exactly as the name suggests
+translationmod.regex_gui.cheatsheet.optional.desc2=Example: (VIP )?\\w+
+
+translationmod.regex_gui.cheatsheet.brace={2,} - Matches n or more
+translationmod.regex_gui.cheatsheet.brace.desc1=Matches a group/character n times or more
+translationmod.regex_gui.cheatsheet.brace.desc2=Add a number after the comma if you want it to match x to y times
+translationmod.regex_gui.cheatsheet.brace.desc3=Or omit the comma if you want it to match exactly n times
+translationmod.regex_gui.cheatsheet.brace.desc4=Example: Level \\d{1,3}
+
+translationmod.regex_gui.cheatsheet.either=| - Either
+translationmod.regex_gui.cheatsheet.either.desc1=Must match either of them, but not both.
+translationmod.regex_gui.cheatsheet.either.desc2=Example: (Dead)|(Alive) (\\w+)
+
+translationmod.regex_gui.cheatsheet.group=() - Group
+translationmod.regex_gui.cheatsheet.group.desc1=Think of groups as parentheses like in mathematics
+translationmod.regex_gui.cheatsheet.group.desc2=They also have a second function. Capture groups.
+translationmod.regex_gui.cheatsheet.group.desc3=By specifying the group number below, the mod can know which group
+translationmod.regex_gui.cheatsheet.group.desc4= contains the player's username
+
+translationmod.regex_gui.cheatsheet.escape=\\\\ - Escape character
+translationmod.regex_gui.cheatsheet.escape.desc1=If you need to capture special characters mentioned in this list,
+translationmod.regex_gui.cheatsheet.escape.desc2= you will need to add an extra backslash to escape them.
+translationmod.regex_gui.cheatsheet.escape.correct=Correct:
+translationmod.regex_gui.cheatsheet.escape.wrong=Wrong:
+
+translationmod.gui.language_select.title=${mod_id}- Language select
+translationmod.gui.language_select.button.select=Select language
+translationmod.gui.language_select.button.back=Back

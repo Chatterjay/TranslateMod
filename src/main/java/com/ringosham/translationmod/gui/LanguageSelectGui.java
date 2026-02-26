@@ -21,6 +21,7 @@ import com.ringosham.translationmod.client.types.Language;
 import com.ringosham.translationmod.common.ConfigManager;
 import com.ringosham.translationmod.translate.Retranslate;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 
 public class LanguageSelectGui extends CommonGui {
     private static final int guiWidth = 400;
@@ -52,15 +53,22 @@ public class LanguageSelectGui extends CommonGui {
     @Override
     public void drawScreen(int x, int y, float tick) {
         super.drawScreen(x, y, tick);
-        fontRendererObj.drawString("%mod_name% - Language select", getLeftMargin(), getTopMargin(), 0x555555);
+        String title = I18n.format("translationmod.gui.language_select.title");
+        fontRendererObj.drawString(title, getLeftMargin(), getTopMargin(), 0x555555);
         langList.drawScreen(x, y, tick);
     }
 
     @Override
     public void initGui() {
         langList = new LangList(mc, this, guiWidth - 18, guiHeight - 48, getYOrigin() + 15, getYOrigin() + guiHeight - 10 - regularButtonHeight, getLeftMargin(), 15, width, height);
-        this.buttonList.add(new GuiButton(0, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight, "Select language"));
-        this.buttonList.add(new GuiButton(1, getLeftMargin(), getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight, "Back"));
+        String selectText = I18n.format("translationmod.gui.language_select.button.select");
+        String backText = I18n.format("translationmod.gui.language_select.button.back");
+        this.buttonList.add(new GuiButton(0, getRightMargin(regularButtonWidth),
+                getYOrigin() + guiHeight - regularButtonHeight - 5,
+                regularButtonWidth, regularButtonHeight, selectText));
+        this.buttonList.add(new GuiButton(1, getLeftMargin(),
+                getYOrigin() + guiHeight - regularButtonHeight - 5,
+                regularButtonWidth, regularButtonHeight, backText));
     }
 
     @Override

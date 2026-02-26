@@ -22,11 +22,13 @@ import com.ringosham.translationmod.common.ConfigManager;
 import com.ringosham.translationmod.common.Log;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static net.minecraft.client.Minecraft.getMinecraft;
@@ -34,30 +36,36 @@ import static net.minecraft.client.Minecraft.getMinecraft;
 public class EngineGui extends CommonGui {
     private static final int guiWidth = 300;
     private static final int guiHeight = 150;
-    private static final String title;
-
-    private static final List<String> googleTooltip = new ArrayList<>();
-    private static final List<String> baiduTooltip = new ArrayList<>();
-
-    static {
-        title = "%mod_name% - Engine options";
-        googleTooltip.add("By default, you are using the \"free\" version of Google translation");
-        googleTooltip.add("This is the same API the Google translate website is using");
-        googleTooltip.add("However, too many requests and Google will block you for a few minutes");
-        googleTooltip.add("Cloud translation API is the paid version of Google translate");
-        googleTooltip.add("Please check the mod page for details");
-        baiduTooltip.add("If you cannot use Google due to country restrictions,");
-        baiduTooltip.add("Baidu is your second option");
-        baiduTooltip.add("An account is needed to use this API (Phone verification required)");
-        baiduTooltip.add("Free tier only allows 1 request per second");
-        baiduTooltip.add("Paying allows for more requests per second");
-        baiduTooltip.add("Please check the mod page for details");
-    }
 
     private String engine;
     private GuiTextField googleKeyBox;
     private GuiTextField baiduKeyBox;
     private GuiTextField baiduAppIdBox;
+
+    private static String getTitle() {
+        return I18n.format("translationmod.gui.settings.title");
+    }
+
+    private static List<String> getGoogleTooltip() {
+        return Arrays.asList(
+                I18n.format("translationmod.engine_gui.tooltip.google.line1"),
+                I18n.format("translationmod.engine_gui.tooltip.google.line2"),
+                I18n.format("translationmod.engine_gui.tooltip.google.line3"),
+                I18n.format("translationmod.engine_gui.tooltip.google.line4"),
+                I18n.format("translationmod.engine_gui.tooltip.google.line5")
+        );
+    }
+
+    private static List<String> getBaiduTooltip() {
+        return Arrays.asList(
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line1"),
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line2"),
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line3"),
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line4"),
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line5"),
+                I18n.format("translationmod.engine_gui.tooltip.baidu.line6")
+        );
+    }
 
     EngineGui() {
         super(guiHeight, guiWidth);
@@ -67,27 +75,31 @@ public class EngineGui extends CommonGui {
     @Override
     public void drawScreen(int x, int y, float tick) {
         super.drawScreen(x, y, tick);
-        drawStringLine(title, new String[]{
-                "Please choose your translation engine",
-                "The mod can only use either of them"
+        drawStringLine(getTitle(), new String[]{
+                I18n.format("translationmod.engine_gui.text.choose_engine"),
+                I18n.format("translationmod.engine_gui.text.only_one_engine")
         }, 5);
         switch (engine) {
             case "google":
-                fontRendererObj.drawString("Cloud platform API key", getLeftMargin(), getYOrigin() + 75, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.engine_gui.text.google_api_key"),
+                        getLeftMargin(), getYOrigin() + 75, 0x555555);
                 googleKeyBox.drawTextBox();
-                fontRendererObj.drawString("Delete/Leave empty to use the free API", getLeftMargin(), getYOrigin() + 110, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.engine_gui.text.google_free_hint"),
+                        getLeftMargin(), getYOrigin() + 110, 0x555555);
                 break;
             case "baidu":
-                fontRendererObj.drawString("Baidu developer App ID", getLeftMargin(), getYOrigin() + 65, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.engine_gui.text.baidu_app_id"),
+                        getLeftMargin(), getYOrigin() + 65, 0x555555);
                 baiduAppIdBox.drawTextBox();
-                fontRendererObj.drawString("Baidu API key", getLeftMargin(), getYOrigin() + 95, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.engine_gui.text.baidu_api_key"),
+                        getLeftMargin(), getYOrigin() + 95, 0x555555);
                 baiduKeyBox.drawTextBox();
                 break;
         }
         if (this.buttonList.get(0).isMouseOver())
-            drawHoveringText(googleTooltip, x, y);
+            drawHoveringText(getGoogleTooltip(), x, y);
         if (this.buttonList.get(1).isMouseOver())
-            drawHoveringText(baiduTooltip, x, y);
+            drawHoveringText(getBaiduTooltip(), x, y);
 
     }
 
@@ -110,11 +122,14 @@ public class EngineGui extends CommonGui {
         baiduKeyBox.setMaxStringLength(24);
         baiduKeyBox.setText(ConfigManager.INSTANCE.getBaiduKey());
 
-        this.buttonList.add(new GuiButton(0, getLeftMargin(), getYOrigin() + 40, guiWidth / 2 - 10, regularButtonHeight, "Google"));
-        this.buttonList.add(new GuiButton(1, getRightMargin(guiWidth / 2 - 5), getYOrigin() + 40, guiWidth / 2 - 10, regularButtonHeight, "Baidu"));
-        this.buttonList.add(new GuiButton(2, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight, "Apply and close"));
-        this.buttonList.add(new GuiButton(3, getRightMargin(regularButtonWidth) - regularButtonWidth - 5, getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight, "Back"));
-        switch (engine) {
+        this.buttonList.add(new GuiButton(0, getLeftMargin(), getYOrigin() + 40, guiWidth / 2 - 10, regularButtonHeight,
+                I18n.format("translationmod.engine_gui.button.google")));
+        this.buttonList.add(new GuiButton(1, getRightMargin(guiWidth / 2 - 5), getYOrigin() + 40, guiWidth / 2 - 10, regularButtonHeight,
+                I18n.format("translationmod.engine_gui.button.baidu")));
+        this.buttonList.add(new GuiButton(2, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight,
+                I18n.format("translationmod.engine_gui.button.apply_close")));
+        this.buttonList.add(new GuiButton(3, getRightMargin(regularButtonWidth) - regularButtonWidth - 5, getYOrigin() + guiHeight - regularButtonHeight - 5, regularButtonWidth, regularButtonHeight,
+                I18n.format("translationmod.engine_gui.button.back")));switch (engine) {
             case "google":
                 this.buttonList.get(0).enabled = false;
                 break;
@@ -180,7 +195,8 @@ public class EngineGui extends CommonGui {
         ConfigManager.INSTANCE.setTranslationEngine(engine);
         ConfigManager.INSTANCE.saveConfig();
         Log.logger.info("Saved engine options");
-        ChatUtil.printChatMessage(true, "New translation engine options have been applied.", EnumChatFormatting.WHITE);
-        getMinecraft().displayGuiScreen(null);
+        ChatUtil.printChatMessage(true,
+                I18n.format("translationmod.engine_gui.chat.applied"),
+                EnumChatFormatting.WHITE);  getMinecraft().displayGuiScreen(null);
     }
 }

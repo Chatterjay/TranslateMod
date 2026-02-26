@@ -23,6 +23,7 @@ import com.ringosham.translationmod.common.ConfigManager;
 import com.ringosham.translationmod.common.Log;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import org.lwjgl.input.Keyboard;
@@ -53,73 +54,73 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
         cheatsheetDesc = new ArrayList<>();
         for (int i = 0; i < 12; i++)
             cheatsheetDesc.add(new ArrayList<String>());
-        cheatsheet.add(". - Matches any character");
-        cheatsheetDesc.get(0).add("Matches any character");
-        cheatsheetDesc.get(0).add("The only exception is the newline character (\\n)");
-        cheatsheetDesc.get(0).add("Newlines are not used in chat so it doesn't matter");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.dot"));
+        cheatsheetDesc.get(0).add(I18n.format("translationmod.regex_gui.cheatsheet.dot.desc1"));
+        cheatsheetDesc.get(0).add(I18n.format("translationmod.regex_gui.cheatsheet.dot.desc2"));
+        cheatsheetDesc.get(0).add(I18n.format("translationmod.regex_gui.cheatsheet.dot.desc3"));
 
-        cheatsheet.add("\\w - Matches word");
-        cheatsheetDesc.get(1).add("Matches all alphabets (Both capital and small), numbers and underscore");
-        cheatsheetDesc.get(1).add("Minecraft usernames are based on words. They are perfect to detect player names");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.word"));
+        cheatsheetDesc.get(1).add(I18n.format("translationmod.regex_gui.cheatsheet.word.desc1"));
+        cheatsheetDesc.get(1).add(I18n.format("translationmod.regex_gui.cheatsheet.word.desc2"));
 
-        cheatsheet.add("\\d - Digit");
-        cheatsheetDesc.get(2).add("Matches all numbers");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.digit"));
+        cheatsheetDesc.get(2).add(I18n.format("translationmod.regex_gui.cheatsheet.digit.desc1"));
 
-        cheatsheet.add("[a-g] - Match character in range");
-        cheatsheetDesc.get(3).add("Matches any characters in tis specific range");
-        cheatsheetDesc.get(3).add("Example: [a-g]");
-        cheatsheetDesc.get(3).add("\u2713 " + EnumChatFormatting.GREEN + "a");
+
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.range"));
+        cheatsheetDesc.get(3).add(I18n.format("translationmod.regex_gui.cheatsheet.range.desc1"));
+        cheatsheetDesc.get(3).add(I18n.format("translationmod.regex_gui.cheatsheet.range.desc2"));
+        cheatsheetDesc.get(3).add("\u2713 " + EnumChatFormatting.GREEN + "a"); // 示例字符无需国际化
         cheatsheetDesc.get(3).add("\u2713 " + EnumChatFormatting.GREEN + "b");
         cheatsheetDesc.get(3).add("\u2717 " + EnumChatFormatting.RED + "z");
 
-        cheatsheet.add("* - Matches 0 or more");
-        cheatsheetDesc.get(4).add("Matches 0 or more of its character class");
-        cheatsheetDesc.get(4).add("Example: N\\w*");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.star"));
+        cheatsheetDesc.get(4).add(I18n.format("translationmod.regex_gui.cheatsheet.star.desc1"));
+        cheatsheetDesc.get(4).add(I18n.format("translationmod.regex_gui.cheatsheet.star.desc2"));
         cheatsheetDesc.get(4).add("\u2713 " + EnumChatFormatting.GREEN + "N");
         cheatsheetDesc.get(4).add("\u2713 " + EnumChatFormatting.GREEN + "No");
         cheatsheetDesc.get(4).add("\u2713 " + EnumChatFormatting.GREEN + "Notch");
 
-        cheatsheet.add("+ - Matches 1 or more");
-        cheatsheetDesc.get(5).add("Matches 1 or more of a character/group");
-        cheatsheetDesc.get(5).add("Example: N\\w+");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.plus"));
+        cheatsheetDesc.get(5).add(I18n.format("translationmod.regex_gui.cheatsheet.plus.desc1"));
+        cheatsheetDesc.get(5).add(I18n.format("translationmod.regex_gui.cheatsheet.plus.desc2"));
         cheatsheetDesc.get(5).add("\u2717 " + EnumChatFormatting.RED + "N");
         cheatsheetDesc.get(5).add("\u2713 " + EnumChatFormatting.GREEN + "No");
         cheatsheetDesc.get(5).add("\u2713 " + EnumChatFormatting.GREEN + "Notch");
 
-        cheatsheet.add("? - Optional");
-        cheatsheetDesc.get(6).add("Exactly as the name suggests");
-        cheatsheetDesc.get(6).add("Example: (VIP )?\\w+");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.optional"));
+        cheatsheetDesc.get(6).add(I18n.format("translationmod.regex_gui.cheatsheet.optional.desc1"));
+        cheatsheetDesc.get(6).add(I18n.format("translationmod.regex_gui.cheatsheet.optional.desc2"));
         cheatsheetDesc.get(6).add("\u2713 " + EnumChatFormatting.GREEN + "VIP PlayerName");
         cheatsheetDesc.get(6).add("\u2713 " + EnumChatFormatting.GREEN + "PlayerName");
 
-        cheatsheet.add("{2,} - Matches n or more");
-        cheatsheetDesc.get(7).add("Matches a group/character n times or more");
-        cheatsheetDesc.get(7).add("Add a number after the comma if you want the it match x to y times");
-        cheatsheetDesc.get(7).add("Or omit the comma if you want the it match exactly n times");
-        cheatsheetDesc.get(7).add("Example: Level \\d{1,3}");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.brace"));
+        cheatsheetDesc.get(7).add(I18n.format("translationmod.regex_gui.cheatsheet.brace.desc1"));
+        cheatsheetDesc.get(7).add(I18n.format("translationmod.regex_gui.cheatsheet.brace.desc2"));
+        cheatsheetDesc.get(7).add(I18n.format("translationmod.regex_gui.cheatsheet.brace.desc3"));
+        cheatsheetDesc.get(7).add(I18n.format("translationmod.regex_gui.cheatsheet.brace.desc4"));
         cheatsheetDesc.get(7).add("\u2713 " + EnumChatFormatting.GREEN + "Level 1");
         cheatsheetDesc.get(7).add("\u2713 " + EnumChatFormatting.GREEN + "Level 420");
         cheatsheetDesc.get(7).add("\u2717 " + EnumChatFormatting.RED + "Level 42069");
 
-
-        cheatsheet.add("| - Either");
-        cheatsheetDesc.get(8).add("Must match either of them, but not both.");
-        cheatsheetDesc.get(8).add("Example: (Dead)|(Alive) (\\w+)");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.either"));
+        cheatsheetDesc.get(8).add(I18n.format("translationmod.regex_gui.cheatsheet.either.desc1"));
+        cheatsheetDesc.get(8).add(I18n.format("translationmod.regex_gui.cheatsheet.either.desc2"));
         cheatsheetDesc.get(8).add("\u2713 " + EnumChatFormatting.GREEN + "Dead PlayerName");
         cheatsheetDesc.get(8).add("\u2713 " + EnumChatFormatting.GREEN + "Alive PlayerName");
         cheatsheetDesc.get(8).add("\u2717 " + EnumChatFormatting.RED + "DeadAlive PlayerName");
 
-        cheatsheet.add("() - Group");
-        cheatsheetDesc.get(9).add("Think of groups as parentheses like in mathematics");
-        cheatsheetDesc.get(9).add("They also have a second function. Capture groups.");
-        cheatsheetDesc.get(9).add("By specifying the group number below, the mod can know which group");
-        cheatsheetDesc.get(9).add(" contains the player's username");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.group"));
+        cheatsheetDesc.get(9).add(I18n.format("translationmod.regex_gui.cheatsheet.group.desc1"));
+        cheatsheetDesc.get(9).add(I18n.format("translationmod.regex_gui.cheatsheet.group.desc2"));
+        cheatsheetDesc.get(9).add(I18n.format("translationmod.regex_gui.cheatsheet.group.desc3"));
+        cheatsheetDesc.get(9).add(I18n.format("translationmod.regex_gui.cheatsheet.group.desc4"));
 
-        cheatsheet.add("\\ - Escape character");
-        cheatsheetDesc.get(10).add("If you need to capture special characters mentioned in this list,");
-        cheatsheetDesc.get(10).add(" you will need to add an extra backslash to escape them.");
-        cheatsheetDesc.get(10).add("Correct:" + EnumChatFormatting.GREEN + " \\(VIP\\) \\w+");
-        cheatsheetDesc.get(10).add("Wrong:" + EnumChatFormatting.RED + " (VIP) \\w+");
+        cheatsheet.add(I18n.format("translationmod.regex_gui.cheatsheet.escape"));
+        cheatsheetDesc.get(10).add(I18n.format("translationmod.regex_gui.cheatsheet.escape.desc1"));
+        cheatsheetDesc.get(10).add(I18n.format("translationmod.regex_gui.cheatsheet.escape.desc2"));
+        cheatsheetDesc.get(10).add(I18n.format("translationmod.regex_gui.cheatsheet.escape.correct") + EnumChatFormatting.GREEN + " \\(VIP\\) \\w+");
+        cheatsheetDesc.get(10).add(I18n.format("translationmod.regex_gui.cheatsheet.escape.wrong") + EnumChatFormatting.RED + " (VIP) \\w+");
     }
 
     private int index;
@@ -141,38 +142,55 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
     @Override
     public void drawScreen(int x, int y, float tick) {
         super.drawScreen(x, y, tick);
-        fontRendererObj.drawString("%mod_name% - Regex list", getLeftMargin(), getTopMargin(), 0x555555);
-        fontRendererObj.drawString("Regex(Regular expression) are search patterns used to detect messages.", getLeftMargin(), getYOrigin() + 15, 0x555555);
-        fontRendererObj.drawString("You can use this website to test your regex.", getLeftMargin(), getYOrigin() + 25, 0x555555);
-        fontRendererObj.drawString("Cheatsheet: (Hover your mouse to see explanation)", getLeftMargin(), getYOrigin() + 35, 0x555555);
-        fontRendererObj.drawString("TIP: Combine classes and quantifiers together to match several characters", getLeftMargin(), getYOrigin() + guiHeight - 40, 0x555555);
-        fontRendererObj.drawString((index + 1) + " of " + Math.max(index + 1, regexes.size()), getLeftMargin() + 15 + smallButtonLength * 2, getYOrigin() + guiHeight - regularButtonHeight, 0x555555);
+        fontRendererObj.drawString(I18n.format("translationmod.regex_gui.title"), getLeftMargin(), getTopMargin(), 0x555555);
+        fontRendererObj.drawString(I18n.format("translationmod.regex_gui.desc1"), getLeftMargin(), getYOrigin() + 15, 0x555555);
+        fontRendererObj.drawString(I18n.format("translationmod.regex_gui.desc2"), getLeftMargin(), getYOrigin() + 25, 0x555555);
+        fontRendererObj.drawString(I18n.format("translationmod.regex_gui.cheatsheet.title"), getLeftMargin(), getYOrigin() + 35, 0x555555);
+        fontRendererObj.drawString(I18n.format("translationmod.regex_gui.tip"), getLeftMargin(), getYOrigin() + guiHeight - 40, 0x555555);
+        fontRendererObj.drawString((index + 1) + I18n.format("translationmod.regex_gui.pagination.of") + Math.max(index + 1, regexes.size()),
+                getLeftMargin() + 15 + smallButtonLength * 2, getYOrigin() + guiHeight - regularButtonHeight, 0x555555);
         String regex = regexTextbox.getText();
         int group = groupTextBox.getText().isEmpty() ? -1 : Integer.parseInt(groupTextBox.getText());
         if (validateRegex(regex)) {
             if (!isRegexConflict(regex)) {
                 int groupCount = countGroups(regex);
                 if (groupCount == 0)
-                    fontRendererObj.drawString(EnumChatFormatting.YELLOW + "Regex valid, but it needs at least 1 group to detect player names", getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
+                    fontRendererObj.drawString(EnumChatFormatting.YELLOW + I18n.format("translationmod.regex_gui.validate.no_group"),
+                            getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
                 else
-                    fontRendererObj.drawString(EnumChatFormatting.GREEN + "Regex valid! The regex should stop at before the message content", getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
-                fontRendererObj.drawString("Possible match: " + findMatch(getChatLog(), regex), getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
+                    fontRendererObj.drawString(EnumChatFormatting.GREEN + I18n.format("translationmod.regex_gui.validate.valid"),
+                            getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
+
+                fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.possible_match") + findMatch(getChatLog(), regex),
+                        getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
                 if (groupCount > 0)
-                    fontRendererObj.drawString("Group number: (1 - " + groupCount + ")", getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
+                    fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.group_number") + "(1 - " + groupCount + ")",
+                            getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
                 else
-                    fontRendererObj.drawString("Group number: (?)", getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
-                fontRendererObj.drawString("Matching username: " + matchUsername(findMatch(getChatLog(), regex), regex, group), getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
+                    fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.group_number") + "(?)",
+                            getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
+
+                fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.matching_username") + matchUsername(findMatch(getChatLog(), regex), regex, group),
+                        getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
             } else {
-                fontRendererObj.drawString(EnumChatFormatting.RED + "Regex conflict with the mod messages! Please be more specific", getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
-                fontRendererObj.drawString("Possible match: ---", getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
-                fontRendererObj.drawString("Matching username: ---", getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
-                fontRendererObj.drawString("Group number: (?)", getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
+                fontRendererObj.drawString(EnumChatFormatting.RED + I18n.format("translationmod.regex_gui.validate.conflict"),
+                        getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.possible_match") + "---",
+                        getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.matching_username") + "---",
+                        getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
+                fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.group_number") + "(?)",
+                        getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
             }
         } else {
-            fontRendererObj.drawString(EnumChatFormatting.RED + "Regex invalid! Please check your syntax", getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
-            fontRendererObj.drawString("Possible match: ---", getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
-            fontRendererObj.drawString("Matching username: ---", getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
-            fontRendererObj.drawString("Group number: (?)", getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
+            fontRendererObj.drawString(EnumChatFormatting.RED + I18n.format("translationmod.regex_gui.validate.invalid"),
+                    getLeftMargin(), getYOrigin() + guiHeight - 120, 0x555555);
+            fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.possible_match") + "---",
+                    getLeftMargin(), getYOrigin() + guiHeight - 110, 0x555555);
+            fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.matching_username") + "---",
+                    getLeftMargin(), getYOrigin() + guiHeight - 70, 0x555555);
+            fontRendererObj.drawString(I18n.format("translationmod.regex_gui.validate.group_number") + "(?)",
+                    getLeftMargin(), getYOrigin() + guiHeight - 80, 0x555555);
         }
         regexTextbox.drawTextBox();
         groupTextBox.drawTextBox();
@@ -199,10 +217,11 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
         groupTextBox.setText(Integer.toString(groups.get(index)));
         Keyboard.enableRepeatEvents(true);
         this.buttonList.add(new TextButton(0, getRightMargin(150), getYOrigin() + 25, getTextWidth(regexTest), regexTest, 0x0000aa));
-        this.buttonList.add(new GuiButton(1, getLeftMargin() + 5 + smallButtonLength, getYOrigin() + guiHeight - 5 - regularButtonHeight, smallButtonLength, smallButtonLength, "+"));
-        this.buttonList.add(new GuiButton(2, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, "Save and close"));
-        this.buttonList.add(new GuiButton(3, getLeftMargin(), getYOrigin() + guiHeight - 5 - regularButtonHeight, smallButtonLength, smallButtonLength, "<"));
-        this.buttonList.add(new GuiButton(4, getRightMargin(regularButtonWidth) - 5 - regularButtonWidth, getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, "Reset to default"));
+        this.buttonList.add(new GuiButton(1, getLeftMargin() + 5 + smallButtonLength, getYOrigin() + guiHeight - 5 - regularButtonHeight, smallButtonLength, smallButtonLength, I18n.format("translationmod.regex_gui.button.add")));
+        this.buttonList.add(new GuiButton(2, getRightMargin(regularButtonWidth), getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, I18n.format("translationmod.regex_gui.button.save_close")));
+        this.buttonList.add(new GuiButton(3, getLeftMargin(), getYOrigin() + guiHeight - 5 - regularButtonHeight, smallButtonLength, smallButtonLength, I18n.format("translationmod.regex_gui.button.prev")));
+        this.buttonList.add(new GuiButton(4, getRightMargin(regularButtonWidth) - 5 - regularButtonWidth, getYOrigin() + guiHeight - 5 - regularButtonHeight, regularButtonWidth, regularButtonHeight, I18n.format("translationmod.regex_gui.button.reset_default")));
+
         //Needs to be cleared since resizing the window calls initGui() again
         this.buttonList.add(new HoveringText(5, getLeftMargin(), getYOrigin() + 45, cheatsheet.get(0), cheatsheetDesc.get(0)));
         this.buttonList.add(new HoveringText(6, getLeftMargin(), getYOrigin() + 55, cheatsheet.get(1), cheatsheetDesc.get(1)));
@@ -337,16 +356,15 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
 
     private void openLink() {
         if (!Desktop.isDesktopSupported()) {
-            Log.logger.error("Cannot open link");
+            Log.logger.error(I18n.format("translationmod.regex_gui.error.cannot_open_link"));
             return;
         }
         Desktop desktop = Desktop.getDesktop();
         try {
             desktop.browse(new URI(regexTest));
         } catch (IOException | URISyntaxException e) {
-            Log.logger.error("Cannot open link");
+            Log.logger.error(I18n.format("translationmod.regex_gui.error.cannot_open_link"));
         }
-
     }
 
     private boolean validateRegex(String regex) {
@@ -365,7 +383,7 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
     private int countGroups(String regex) {
         Pattern pattern = Pattern.compile(regex);
         //Why is matching even needed... This is stupid.
-        Matcher matcher = pattern.matcher("Reality is a shitty game! -Katsuragi Keima");
+        Matcher matcher = pattern.matcher(I18n.format("translationmod.regex_gui.count_groups.test_string"));
         return matcher.groupCount();
     }
 
@@ -407,16 +425,16 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
             shorten = shorten + "...";
             return matchMessage.length() < shorten.length() ? matchMessage : shorten;
         }
-        return EnumChatFormatting.RED + "No match from chat log :(";
+        return EnumChatFormatting.RED + I18n.format("translationmod.regex_gui.match.no_match");
     }
 
     private String matchUsername(String message, String regex, int group) {
-        if (group == -1 || group > countGroups(regex) || message.equals(EnumChatFormatting.RED + "Can't find player username :("))
+        if (group == -1 || group > countGroups(regex) ||  message.equals(EnumChatFormatting.RED + I18n.format("translationmod.regex_gui.match.no_username")))
             return "---";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(message);
         if (!matcher.find())
-            return EnumChatFormatting.RED + "Can't find player username :(";
+            return EnumChatFormatting.RED + I18n.format("translationmod.regex_gui.match.no_username");
         return matcher.group(group);
     }
 
@@ -439,7 +457,7 @@ public class RegexGui extends CommonGui implements GuiYesNoCallback {
         ConfigManager.INSTANCE.setGroupList(groups);
         //Let the manager do all the validation
         ConfigManager.INSTANCE.syncConfig();
-        ChatUtil.printChatMessage(true, "Regex list applied", EnumChatFormatting.WHITE);
+        ChatUtil.printChatMessage(true, I18n.format("translationmod.regex_gui.chat.regex_applied"), EnumChatFormatting.WHITE);
     }
 
     //Must be inner class due to protected access to drawHoveringText in GuiScreen

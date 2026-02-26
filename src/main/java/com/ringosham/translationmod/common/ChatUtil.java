@@ -25,6 +25,7 @@ import net.minecraft.client.gui.GuiUtilRenderComponents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.HoverEvent;
 import net.minecraft.util.*;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -68,10 +69,14 @@ public class ChatUtil {
         TranslationMod.refreshChat += list.size();
     }
 
+
     public static void printCredits() {
-        ChatUtil.printChatMessage(false, "Real-time translation mod by Ringosham. Version %mod_version%", EnumChatFormatting.AQUA);
-        ChatUtil.printChatMessage(false, "Online translation services powered by Google", EnumChatFormatting.AQUA);
-        ChatUtil.printChatMessage(false, "Translation results may not be 100% accurate", EnumChatFormatting.AQUA);
+        String title = StatCollector.translateToLocal("translationmod.credits.title");
+        String service = StatCollector.translateToLocal("translationmod.credits.service");
+        String disclaimer = StatCollector.translateToLocal("translationmod.credits.disclaimer");
+        ChatUtil.printChatMessage(false, title, EnumChatFormatting.AQUA);
+        ChatUtil.printChatMessage(false, service, EnumChatFormatting.AQUA);
+        ChatUtil.printChatMessage(false, disclaimer, EnumChatFormatting.AQUA);
     }
 
     //For color only.

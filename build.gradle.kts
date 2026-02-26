@@ -10,13 +10,12 @@ plugins {
 
 //Constants:
 
-val baseGroup: String by project
-val mcVersion: String by project
-val version: String by project
-val modid: String by project
-val modName: String by project
+val modVersion: String = project.property("version") as String
+val modId: String = project.property("modid") as String
+val mcVersion: String = project.property("mcVersion") as String
+val modName: String = project.property("modName") as String
+val baseGroup: String = project.property("baseGroup") as String
 val transformerFile = file("src/main/resources/accesstransformer.cfg")
-
 // Toolchains:
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
@@ -80,30 +79,34 @@ tasks.withType(JavaCompile::class) {
 }
 
 tasks.withType(org.gradle.jvm.tasks.Jar::class) {
-    archiveBaseName.set(modid)
+    archiveBaseName.set(modId)
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
         if (transformerFile.exists())
-            this["FMLAT"] = "${modid}_at.cfg"
+            this["FMLAT"] = "${modId}_at.cfg"
     }
 }
-
+version = modVersion
+group = baseGroup
 tasks.processResources {
-    inputs.property("version", project.version)
-    inputs.property("mcversion", mcVersion)
-    inputs.property("modid", modid)
-    inputs.property("modName", modName)
+    inputs.property("mod_version", modVersion)
+    inputs.property("mod_id", modId)
 
-    filesMatching(listOf("mcmod.info")) {
-        expand(inputs.properties)
+    val expandProperties = mapOf(
+        "mod_version" to modVersion,
+        "mod_id" to modId
+    )
+
+    filesMatching("**/*.lang") {
+        expand(expandProperties)
+        filteringCharset = "UTF-8"
     }
 
-    rename("accesstransformer.cfg", "META-INF/${modid}_at.cfg")
+    rename("accesstransformer.cfg", "META-INF/${modId}_at.cfg")
 }
-
 val replacements = mapOf(
-    "%mod_id%" to modid,
+    "%mod_id%" to modId,
     "%mod_name%" to modName,
     "%mod_version%" to version,
     "%minecraft_version%" to mcVersion
