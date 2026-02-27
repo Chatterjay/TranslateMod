@@ -1,31 +1,37 @@
+# 基础按钮
 translationmod.gui.button.settings=设置
 translationmod.gui.button.close=关闭
 translationmod.gui.button.credits=鸣谢
 translationmod.gui.button.retranslate=重新翻译
 
+# 提示文本
 translationmod.hint.translation_settings=按下 [%s] 打开翻译设置
 translationmod.log.regex.missing=配置文件中未找到聊天正则表达式
-translationmod.credits.title=实时翻译模组 版本 ${mod_version} by Ringosham.
+translationmod.credits.title=实时翻译模组 版本 ${mod_version} 作者：Ringosham
 
-translationmod.gui.mod_name=${mod_id} - 由 %s 开发
-translationmod.gui.header_hint=在此输入命令/前缀 (可选)
-translationmod.gui.message_hint=在此输入你的消息 (按回车发送)
+# GUI 基础文本
+translationmod.gui.mod_name=${mod_id} - 开发者：%s
+translationmod.gui.header_hint=输入命令/前缀（可选）
+translationmod.gui.message_hint=输入消息（按回车发送）
 
-translationmod.credits.service=在线翻译服务由谷歌提供支持
-translationmod.credits.disclaimer=翻译结果可能并非 100% 准确
-translationmod.chat.regex.missing=该模组需要配置聊天正则表达式才能运行。请前往模组选项添加。
+# 鸣谢相关
+translationmod.credits.service=翻译服务由谷歌提供
+translationmod.credits.disclaimer=翻译结果可能存在误差
+translationmod.chat.regex.missing=模组需要配置聊天正则表达式才能运行，请前往模组选项添加
 
+# 重新翻译界面
 translationmod.gui.retranslate.title=${mod_id} - 重新翻译
-translationmod.gui.retranslate.hint.line1=翻译结果语言不正确？
-translationmod.gui.retranslate.hint.line2=选择下方消息重新翻译。
+translationmod.gui.retranslate.hint.line1=翻译语言不对？
+translationmod.gui.retranslate.hint.line2=选择下方消息重新翻译
 
 translationmod.gui.retranslate.hover.sender=发送者：%s
 translationmod.gui.retranslate.hover.message=消息内容：%s
 
+# 设置界面
 translationmod.gui.settings.button.save_close=保存并关闭
-translationmod.gui.settings.button.reset_default=重置为默认值
+translationmod.gui.settings.button.reset_default=恢复默认
 translationmod.gui.settings.button.translate_sign=翻译牌子
-translationmod.gui.settings.button.engine_options=引擎选项
+translationmod.gui.settings.button.engine_options=翻译引擎设置
 translationmod.gui.settings.button.message_color=消息颜色
 translationmod.gui.settings.button.view_add=查看/添加
 
@@ -39,36 +45,39 @@ translationmod.gui.settings.label.preview=预览：
 
 translationmod.gui.settings.preview.text=你好 Hello Notch
 
-translationmod.gui.settings.tooltip.target_language=你的聊天消息将被翻译为该语言
+# 设置界面提示框
+translationmod.gui.settings.tooltip.target_language=聊天消息将被翻译为该语言
+translationmod.gui.settings.tooltip.self_language.line1=你游戏内使用的发言语言
+translationmod.gui.settings.tooltip.self_language.line2=翻译自己发送的消息时会用到
+translationmod.gui.settings.tooltip.speak_as_language.line1=你的消息会被翻译为该语言
+translationmod.gui.settings.tooltip.speak_as_language.line2=通过本模组发消息时，
+translationmod.gui.settings.tooltip.speak_as_language.line3=消息会自动翻译成这个语言
 
-translationmod.gui.settings.tooltip.self_language.line1=你在游戏内使用的发言语言
-translationmod.gui.settings.tooltip.self_language.line2=当你需要翻译自己发送的消息时会用到此设置
+translationmod.gui.settings.tooltip.regex_list.line1=正则表达式是检测聊天消息的匹配规则
+translationmod.gui.settings.tooltip.regex_list.line2=如果某服务器模组没反应，
+translationmod.gui.settings.tooltip.regex_list.line3=大概率需要添加对应正则规则
 
-translationmod.gui.settings.tooltip.speak_as_language.line1=你的消息将被翻译为该语言。
-translationmod.gui.settings.tooltip.speak_as_language.line2=当你通过本模组输入消息后，
-translationmod.gui.settings.tooltip.speak_as_language.line3=消息会被翻译为你指定的这个语言
+translationmod.gui.settings.tooltip.api_key=修改翻译引擎并输入API密钥
+translationmod.gui.settings.tooltip.color=修改翻译消息的显示颜色
+translationmod.gui.settings.tooltip.bold=翻译消息加粗
+translationmod.gui.settings.tooltip.italic=翻译消息斜体
+translationmod.gui.settings.tooltip.underline=翻译消息下划线
+translationmod.gui.settings.tooltip.sign=看向牌子时自动翻译文本
 
-translationmod.gui.settings.tooltip.regex_list.line1=正则表达式是模组检测聊天消息的匹配规则。
-translationmod.gui.settings.tooltip.regex_list.line2=如果你发现在某个服务器上模组没有任何反应，
-translationmod.gui.settings.tooltip.regex_list.line3=大概率需要在此处添加对应的正则规则。
-
-translationmod.gui.settings.tooltip.api_key=修改翻译引擎选项并输入你的API密钥
-translationmod.gui.settings.tooltip.color=修改翻译后消息的显示颜色
-translationmod.gui.settings.tooltip.bold=为翻译后的消息添加粗体样式
-translationmod.gui.settings.tooltip.italic=为翻译后的消息添加斜体样式
-translationmod.gui.settings.tooltip.underline=为翻译后的消息添加下划线样式
-translationmod.gui.settings.tooltip.sign=当你看向牌子时自动翻译牌子上的文本
+# 语言配置
 translationmod.config.lang.english=英语
 translationmod.config.lang.japanese=日语
 
-translationmod.chat.hint.settings_applied=设置已应用。
+# 聊天提示
+translationmod.chat.hint.settings_applied=设置已生效
 
-translationmod.engine_gui.text.choose_engine=请选择你的翻译引擎
-translationmod.engine_gui.text.only_one_engine=本模组仅能使用其中一个引擎
+# 翻译引擎界面
+translationmod.engine_gui.text.choose_engine=选择翻译引擎
+translationmod.engine_gui.text.only_one_engine=仅可使用一个翻译引擎
 
-translationmod.engine_gui.text.google_api_key=谷歌云平台API密钥
-translationmod.engine_gui.text.google_free_hint=删除/留空以使用免费版API
-translationmod.engine_gui.text.baidu_app_id=百度开发者应用ID
+translationmod.engine_gui.text.google_api_key=谷歌云API密钥
+translationmod.engine_gui.text.google_free_hint=留空/删除使用免费版API
+translationmod.engine_gui.text.baidu_app_id=百度应用ID
 translationmod.engine_gui.text.baidu_api_key=百度API密钥
 
 translationmod.engine_gui.button.google=谷歌
@@ -76,101 +85,106 @@ translationmod.engine_gui.button.baidu=百度
 translationmod.engine_gui.button.apply_close=应用并关闭
 translationmod.engine_gui.button.back=返回
 
-translationmod.engine_gui.tooltip.google.line1=默认情况下，你使用的是谷歌翻译的"免费版"
-translationmod.engine_gui.tooltip.google.line2=该版本与谷歌翻译网页版使用相同的API
-translationmod.engine_gui.tooltip.google.line3=但请求次数过多时，谷歌会封禁你的IP几分钟
-translationmod.engine_gui.tooltip.google.line4=谷歌云翻译API是付费版的谷歌翻译服务
-translationmod.engine_gui.tooltip.google.line5=详情请查看模组页面
+# 翻译引擎提示框
+translationmod.engine_gui.tooltip.google.line1=默认使用谷歌翻译免费版
+translationmod.engine_gui.tooltip.google.line2=与网页版谷歌翻译共用API
+translationmod.engine_gui.tooltip.google.line3=请求过多会被谷歌封禁IP几分钟
+translationmod.engine_gui.tooltip.google.line4=谷歌云翻译是付费版服务
+translationmod.engine_gui.tooltip.google.line5=详情见模组页面
 
-translationmod.engine_gui.tooltip.baidu.line1=如果你因地区限制无法使用谷歌翻译，
-translationmod.engine_gui.tooltip.baidu.line2=百度翻译可作为你的备选方案
-translationmod.engine_gui.tooltip.baidu.line3=使用该API需要注册账号（需手机号验证）
-translationmod.engine_gui.tooltip.baidu.line4=免费额度仅允许每秒1次请求
-translationmod.engine_gui.tooltip.baidu.line5=付费后可提升每秒请求次数
-translationmod.engine_gui.tooltip.baidu.line6=详情请查看模组页面
+translationmod.engine_gui.tooltip.baidu.line1=若地区限制无法用谷歌翻译，
+translationmod.engine_gui.tooltip.baidu.line2=可选择百度翻译作为替代
+translationmod.engine_gui.tooltip.baidu.line3=需注册账号（验证手机号）
+translationmod.engine_gui.tooltip.baidu.line4=免费版每秒仅1次请求
+translationmod.engine_gui.tooltip.baidu.line5=付费可提升请求频率
+translationmod.engine_gui.tooltip.baidu.line6=详情见模组页面
 
-translationmod.engine_gui.chat.applied=已应用新的翻译引擎设置。
+translationmod.engine_gui.chat.applied=翻译引擎设置已生效
 
-# RegexGui 基础文本
+# 正则表达式界面
 translationmod.regex_gui.title=${mod_id} - 正则表达式列表
-translationmod.regex_gui.desc1=正则表达式（Regex）是用于检测消息的搜索模式。
-translationmod.regex_gui.desc2=你可以使用该网站测试你的正则表达式。
-translationmod.regex_gui.cheatsheet.title=速查表：（将鼠标悬停查看详细说明）
-translationmod.regex_gui.tip=提示：将字符类和量词组合使用可匹配多个字符
-translationmod.regex_gui.pagination.of= /
+translationmod.regex_gui.desc1=正则表达式用于检测聊天消息的格式
+translationmod.regex_gui.desc2=可通过该网站测试正则表达式
+translationmod.regex_gui.cheatsheet.title=速查表（鼠标悬停看详情）
+translationmod.regex_gui.tip=提示：组合字符类和量词可匹配多字符
+translationmod.regex_gui.pagination.of=/
 translationmod.regex_gui.test_message=Notch --> 英语：你好！
 
 translationmod.regex_gui.button.add=+
 translationmod.regex_gui.button.next=>
 translationmod.regex_gui.button.save_close=保存并关闭
 translationmod.regex_gui.button.prev=<
-translationmod.regex_gui.button.reset_default=重置为默认
+translationmod.regex_gui.button.reset_default=恢复默认
 
-translationmod.regex_gui.validate.valid=正则表达式有效！该表达式应在消息内容前结束
-translationmod.regex_gui.validate.invalid=正则表达式无效！请检查语法
-translationmod.regex_gui.validate.conflict=正则表达式与模组消息冲突！请缩小匹配范围
-translationmod.regex_gui.validate.no_group=正则表达式有效，但需要至少1个分组来检测玩家名称
-translationmod.regex_gui.validate.possible_match=可能的匹配结果：
+# 正则验证提示
+translationmod.regex_gui.validate.valid=正则表达式有效！应在消息内容前结束
+translationmod.regex_gui.validate.invalid=正则表达式无效！检查语法
+translationmod.regex_gui.validate.conflict=正则与模组消息冲突！缩小匹配范围
+translationmod.regex_gui.validate.no_group=正则有效，但需至少1个分组检测玩家名
+translationmod.regex_gui.validate.possible_match=可能匹配结果：
 translationmod.regex_gui.validate.group_number=分组编号：
 translationmod.regex_gui.validate.matching_username=匹配的用户名：
 
-translationmod.regex_gui.match.no_match=聊天记录中无匹配结果 :(
-translationmod.regex_gui.match.no_username=无法找到玩家用户名 :(
+translationmod.regex_gui.match.no_match=聊天记录无匹配结果 :(
+translationmod.regex_gui.match.no_username=未找到玩家用户名 :(
 
 translationmod.regex_gui.error.cannot_open_link=无法打开链接
+translationmod.regex_gui.chat.regex_applied=正则列表已生效
 
-translationmod.regex_gui.chat.regex_applied=正则表达式列表已应用
-
+# 正则速查表
 translationmod.regex_gui.cheatsheet.dot=. - 匹配任意字符
-translationmod.regex_gui.cheatsheet.dot.desc1=匹配任意单个字符
-translationmod.regex_gui.cheatsheet.dot.desc2=唯一例外是换行符（\\n）
-translationmod.regex_gui.cheatsheet.dot.desc3=聊天消息中无换行符，因此无需考虑
+translationmod.regex_gui.cheatsheet.dot.desc1=匹配单个任意字符
+translationmod.regex_gui.cheatsheet.dot.desc2=例外：换行符（\\n）
+translationmod.regex_gui.cheatsheet.dot.desc3=聊天消息无换行符，无需考虑
 
 translationmod.regex_gui.cheatsheet.word=\\w - 匹配单词字符
-translationmod.regex_gui.cheatsheet.word.desc1=匹配所有字母（大小写）、数字和下划线
-translationmod.regex_gui.cheatsheet.word.desc2=Minecraft用户名由单词字符组成，适合用于检测玩家名称
+translationmod.regex_gui.cheatsheet.word.desc1=匹配字母、数字、下划线
+translationmod.regex_gui.cheatsheet.word.desc2=适合检测Minecraft用户名
 
 translationmod.regex_gui.cheatsheet.digit=\\d - 匹配数字
-translationmod.regex_gui.cheatsheet.digit.desc1=匹配所有0-9的数字
+translationmod.regex_gui.cheatsheet.digit.desc1=匹配0-9的数字
 
-translationmod.regex_gui.cheatsheet.range=[a-g] - 匹配范围内的字符
-translationmod.regex_gui.cheatsheet.range.desc1=匹配指定范围内的任意字符
+translationmod.regex_gui.cheatsheet.range=[a-g] - 匹配范围内字符
+translationmod.regex_gui.cheatsheet.range.desc1=匹配指定区间的任意字符
 translationmod.regex_gui.cheatsheet.range.desc2=示例：[a-g]
 
 translationmod.regex_gui.cheatsheet.star=* - 匹配0次或多次
-translationmod.regex_gui.cheatsheet.star.desc1=匹配其前面的字符类0次或多次
+translationmod.regex_gui.cheatsheet.star.desc1=匹配前一个字符0次及以上
 translationmod.regex_gui.cheatsheet.star.desc2=示例：N\\w*
 
 translationmod.regex_gui.cheatsheet.plus=+ - 匹配1次或多次
-translationmod.regex_gui.cheatsheet.plus.desc1=匹配其前面的字符/分组1次或多次
+translationmod.regex_gui.cheatsheet.plus.desc1=匹配前一个字符1次及以上
 translationmod.regex_gui.cheatsheet.plus.desc2=示例：N\\w+
 
 translationmod.regex_gui.cheatsheet.optional=? - 可选匹配
-translationmod.regex_gui.cheatsheet.optional.desc1=顾名思义，匹配其前面的内容0次或1次
+translationmod.regex_gui.cheatsheet.optional.desc1=匹配前一个内容0次或1次
 translationmod.regex_gui.cheatsheet.optional.desc2=示例：(VIP )?\\w+
 
-translationmod.regex_gui.cheatsheet.brace={2,} - 匹配n次或更多
-translationmod.regex_gui.cheatsheet.brace.desc1=匹配指定分组/字符至少n次
-translationmod.regex_gui.cheatsheet.brace.desc2=如需匹配x到y次，可在逗号后添加数字
-translationmod.regex_gui.cheatsheet.brace.desc3=如需精确匹配n次，可省略逗号
+translationmod.regex_gui.cheatsheet.brace={2,} - 匹配n次及以上
+translationmod.regex_gui.cheatsheet.brace.desc1=匹配至少n次
+translationmod.regex_gui.cheatsheet.brace.desc2=x到y次：逗号后加数字
+translationmod.regex_gui.cheatsheet.brace.desc3=精确n次：省略逗号
 translationmod.regex_gui.cheatsheet.brace.desc4=示例：Level \\d{1,3}
 
 translationmod.regex_gui.cheatsheet.either=| - 或匹配
-translationmod.regex_gui.cheatsheet.either.desc1=必须匹配其中一个，但不能同时匹配
+translationmod.regex_gui.cheatsheet.either.desc1=匹配其中一个，不同时匹配
 translationmod.regex_gui.cheatsheet.either.desc2=示例：(Dead)|(Alive) (\\w+)
 
 translationmod.regex_gui.cheatsheet.group=() - 分组
-translationmod.regex_gui.cheatsheet.group.desc1=可以将分组理解为数学中的括号
-translationmod.regex_gui.cheatsheet.group.desc2=分组还有第二个功能：捕获分组
-translationmod.regex_gui.cheatsheet.group.desc3=通过在下方指定分组编号，模组可以识别哪个分组
-translationmod.regex_gui.cheatsheet.group.desc4= 包含玩家的用户名
+translationmod.regex_gui.cheatsheet.group.desc1=类似数学中的括号
+translationmod.regex_gui.cheatsheet.group.desc2=可用于捕获内容
+translationmod.regex_gui.cheatsheet.group.desc3=指定分组编号后，
+translationmod.regex_gui.cheatsheet.group.desc4=模组可识别玩家用户名所在分组
 
 translationmod.regex_gui.cheatsheet.escape=\\\\ - 转义字符
-translationmod.regex_gui.cheatsheet.escape.desc1=如需匹配本列表中的特殊字符，
-translationmod.regex_gui.cheatsheet.escape.desc2= 需要添加额外的反斜杠进行转义
+translationmod.regex_gui.cheatsheet.escape.desc1=匹配特殊字符需加反斜杠
+translationmod.regex_gui.cheatsheet.escape.desc2=进行转义
 translationmod.regex_gui.cheatsheet.escape.correct=正确写法：
 translationmod.regex_gui.cheatsheet.escape.wrong=错误写法：
 
 translationmod.gui.language_select.title=${mod_id} - 语言选择
-translationmod.gui.language_select.button.select=选择语言
+translationmod.gui.language_select.button.select=选择
 translationmod.gui.language_select.button.back=返回
+
+key.translationmod.menu=翻译总菜单
+key.categories.translationmod=自动翻译

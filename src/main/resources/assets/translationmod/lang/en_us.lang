@@ -173,3 +173,6 @@ translationmod.regex_gui.cheatsheet.escape.wrong=Wrong:
 translationmod.gui.language_select.title=${mod_id}- Language select
 translationmod.gui.language_select.button.select=Select language
 translationmod.gui.language_select.button.back=Back
+
+key.translationmod.menu=Translator menu
+key.categories.translationmod=Translation Mod
